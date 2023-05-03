@@ -18,7 +18,7 @@ alert("Registro exitoso.\nTe damos la bienvenida a nuestra tienda " + username);
 
 console.log("Guarda esta información en un lugar seguro para tus futuras compras.\nNombre de usuario: " + username + "\n" + "Contraseña: " + password) + "\n";
 
-//! FILTRAR BÚSQUEDA Y EXISTENCIA DE PRODUCTO (FILTER/SOME) -------*
+//! FILTRAR BÚSQUEDA Y STOCK DE PRODUCTO (FILTER/SOME) -------*
 
 const searchProducts = [
     {
