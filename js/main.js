@@ -10,7 +10,7 @@ while (username === ""){
     username = prompt("Ingresa un nombre de usuario: ");
 }
 
-while (password === "" || password.length<8 || password.length>14){
+while (password === "" || password.length < 8 || password.length > 14){
     password = prompt("Ingresa una contraseña (entre 8 y 14 caracteres): ");
 }
 
@@ -54,7 +54,7 @@ const searchProducts = [
         price: 7
     },
     {
-        name: "medias",
+        name: "medias (pack x3)",
         price: 10
     },
     {
@@ -67,50 +67,54 @@ const searchProducts = [
     },
 ];
 
+searchProducts.forEach( (stocks) => {
+    console.log(stocks.name);
+});
+
 let chosenProd = prompt("Ingrese el producto a buscar: ");
 console.log (searchProducts.filter((elem) => elem.name.includes(chosenProd)));
 
-let stockProd = prompt("Ingrese el producto a consultar: ");
+let stockProd = prompt("Ingrese el producto a consultar stock: ");
 console.log (searchProducts.some((elem) => elem.name == stockProd));
 
 //! REALIZANDO COMPRA DE LOS PRODUCTOS  --------------------*
 //LISTA DE PRODUCTOS
-    let products = [
-        {
-            name: "joggers",
-            price: 35
-        },
-        { 
-            name: "polos",
-            price: 25
-        },
-        { 
-            name: "vinchas",
-            price: 5
-        },
-        { 
-            name: "peinetas",
-            price: 7
-        },
-        { 
-            name: "medias packx3",
-            price: 10
-        },
-        { 
-            name: "toallas",
-            price: 18
-        },
-    ];
+let products = [
+    {
+        name: "joggers",
+        price: 35
+    },
+    { 
+        name: "polos",
+        price: 25
+    },
+    { 
+        name: "vinchas",
+        price: 5
+    },
+    { 
+        name: "peinetas",
+        price: 7
+    },
+    { 
+        name: "medias (pack x3)",
+        price: 10
+    },
+    { 
+        name: "toallas",
+        price: 18
+    },
+];
 
-  //MOSTRAR LISTA
-    function showProducts() {
-        console.log("--- LISTA DE PRODUCTOS ---");
-        for (let i = 0; i < products.length; i++) {
-        console.log(`${i + 1}. ${products[i].name} - S/ ${products[i].price}`);
+//MOSTRAR LISTA
+function showProducts() {
+    console.log("--- LISTA DE PRODUCTOS ---");
+    for (let i = 0; i < products.length; i++) {
+    console.log(`${i + 1}. ${products[i].name} - S/ ${products[i].price}`);
         }
-    }
+}
 
-  //COMPRAR PRODUCTOS
+//COMPRAR PRODUCTOS
     function buyProducts() {
         let cart = [];
         let option;
@@ -118,7 +122,7 @@ console.log (searchProducts.some((elem) => elem.name == stockProd));
         while (option !== "0") {
         showProducts();
         console.log("0. Terminar compra");
-        option = prompt("Selecciona un producto (un número) para comprar (0 para terminar)");
+        option = prompt("Selecciona un número (del 1 al 6) para comprar (0 para terminar)\nMira la lista desde la consola.");
     
         if (option !== "0") {
             let productIndex = Number(option) - 1;
@@ -141,16 +145,14 @@ console.log (searchProducts.some((elem) => elem.name == stockProd));
         }
         }
 
-        alert("NOTA: Los productos como las medias u otros similares, el precio unitario equivale a un pack x 3")
-        console.log("NOTA: Los productos como las medias u otros similares, el precio unitario equivale a un pack x 3")
+        alert("Estimado cliente:\nPara los productos como las medias u otros similares, el precio unitario equivale a un pack x3")
+        console.log("-------------------\nEstimado cliente:\nPara los productos como las medias u otros similares, el precio unitario equivale a un pack x3")
 
         console.log("--- RESUMEN DE COMPRA ---");
         let total = 0;
 
         for (let i = 0; i < cart.length; i++) {
         let product = cart[i];
-        alert(`${product.quantity} ${product.name} - S/ ${product.price} (precio unitario)`);
-        console.log(`${product.quantity} ${product.name} - S/ ${product.price} (precio unitario)`);
         total += product.price * product.quantity;
         }
 
@@ -162,7 +164,7 @@ console.log (searchProducts.some((elem) => elem.name == stockProd));
         alert(`IGV (18%): S/ ${igv.toFixed(2)}`);
         console.log(`IGV (18%): S/ ${igv.toFixed(2)}`);
         alert(`Total a pagar : S/ ${total.toFixed(2)}`);
-        console.log(`-------------------\nTotal a pagar : S/ ${total.toFixed(2)}`);
+        console.log(`Total a pagar : S/ ${total.toFixed(2)}`);
     }
 
   //EJECUTAR COMPRA DE PRODUCTOS
