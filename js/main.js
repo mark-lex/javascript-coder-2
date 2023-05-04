@@ -1,7 +1,7 @@
 //? PRE-ENTREGA 2
 
-//! CARGA DATOS PARA REGISTRO -------------------------*
-alert("Por favor, regístrate para comenzar a comprar.");
+//! CARGA DATOS PARA REGISTRO
+alert("Te damos la bienvenida a GamaShop.\nPor favor, regístrate para comenzar a comprar.");
 
 let username = "";
 let password = "";
@@ -18,13 +18,9 @@ alert("Registro exitoso.\nTe damos la bienvenida a nuestra tienda " + username);
 
 console.log("Guarda esta información en un lugar seguro para tus futuras compras.\nNombre de usuario: " + username + "\n" + "Contraseña: " + password) + "\n";
 
-//! FILTRAR BÚSQUEDA Y STOCK DE PRODUCTO (FILTER/SOME) -------*
+//! FILTRAR BÚSQUEDA Y STOCK DE PRODUCTO (FILTER/SOME)
 
 const searchProducts = [
-    {
-        name: "joggers",
-        price: 25
-    },
     {
         name: "joggers drill",
         price: 35
@@ -34,7 +30,7 @@ const searchProducts = [
         price: 20
     },
     {
-        name: "polos camisero",
+        name: "polos camiseros",
         price: 25
     },
     {
@@ -54,30 +50,39 @@ const searchProducts = [
         price: 7
     },
     {
-        name: "medias (pack x3)",
+        name: "medias",
         price: 10
     },
     {
-        name: "toallas medianas",
-        price: 18
+        name: "toallas",
+        price: 23
     },
     {
-        name: "toallas grandes",
-        price: 23
+        name: "gorros",
+        price: 15
     },
 ];
 
-searchProducts.forEach( (stocks) => {
-    console.log(stocks.name);
-});
+const names = searchProducts.map(product => product.name);
+const list = names.join('\n');
 
-let chosenProd = prompt("Ingrese el producto a buscar: ");
-console.log (searchProducts.filter((elem) => elem.name.includes(chosenProd)));
+let chosenProd = prompt(`Ingresa el producto de esta lista que te interese buscar: \n${list}`);
+console.log(searchProducts.filter((elem) => elem.name.includes(chosenProd)));
 
-let stockProd = prompt("Ingrese el producto a consultar stock: ");
-console.log (searchProducts.some((elem) => elem.name == stockProd));
+let stockProd = prompt(`Ingresa el producto que te interese consultar su stock:\n(Esta lista opcional)\n${list}`);
+/* console.log(searchProducts.some((elem) => elem.name == stockProd)); */
+let found = searchProducts.some((elem) => elem.name === stockProd);
 
-//! REALIZANDO COMPRA DE LOS PRODUCTOS  --------------------*
+if (found) {
+    alert("Hay stock del producto ingresado.");
+} else {
+    alert("El producto ingresado no se encuentra disponible.");
+    found = false;
+}
+
+console.log(found);
+
+//! REALIZANDO COMPRA DE LOS PRODUCTOS
 //LISTA DE PRODUCTOS
 let products = [
     {
@@ -170,29 +175,30 @@ function showProducts() {
   //EJECUTAR COMPRA DE PRODUCTOS
     buyProducts();
 
-//! ESCOGE COLOR Y TALLA DEL PRODUCTO -----------------*
+//! ESCOGE COLOR Y TALLA DEL PRODUCTO
 
-let colour = prompt("Elige un color (negro, azul, guinda y blanco)");
+while(true){
+    let colour = prompt("Elige un color (negro, azul, guinda y blanco)").toString().toUpperCase();
+    let size = prompt("Ahora, elige una talla (S, M, L, XL)").toString().toUpperCase();
 
-let size = prompt("Ahora, elige una talla (S, M, L, XL)");
-
-switch (colour) {
-    case "negro":
-        alert(`Has elegido el color negro en talla ${size}`);
-        console.log(`Has elegido el color negro en talla ${size}`);
-        break;
-    case "azul":
-        alert(`Has elegido el color azul en talla ${size}`);
-        console.log(`Has elegido el color azul en talla ${size}`);
-        break;
-    case "guinda":
-        alert(`Has elegido el color guinda en talla ${size}`);
-        console.log(`Has elegido el color guinda en talla ${size}`);
-        break;
-    case "blanco":
-        alert(`Has elegido el color blanco en talla ${size}`);
-        console.log(`Has elegido el color blanco en talla ${size}`);
-        break;
-    default:
-        alert("Color no válido");
+    switch (colour) {
+        case "NEGRO":
+            alert(`Has elegido el color ${colour} en talla ${size}`);
+            break;
+        case "AZUL":
+            alert(`Has elegido el color ${colour} en talla ${size}`);
+            break;
+        case "GUINDA":
+            alert(`Has elegido el color ${colour} en talla ${size}`);
+            break;
+        case "BLANCO":
+            alert(`Has elegido el color ${colour} en talla ${size}`);
+            break;
+        default:
+            alert("Ingresaste un color no válido");
+        continue;
+    }
+    break;
 }
+
+alert ("Agredecemos tu preferencia. \nEsperamos verte de nuevo pronto.")
